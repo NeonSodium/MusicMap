@@ -1,0 +1,22 @@
+origine, 1N ARTISTE, 1N LOCALISATION
+a_sortie, 1N ARTISTE, 1N ALBUM
+
+GENRE : idGenres, nomGenre
+LOCALISATION : idLocalisation, pays
+ARTISTE : idArtiste, nomArtiste, bio
+ALBUM : idAlbum, nomAlbum, coverAlbum, idArtist, date_sortie
+
+avoir_genre, 1N GENRE, 1N MUSIQUE
+interprete, 1N ARTISTE, 1N MUSIQUE
+dans_album, 1N ALBUM, 1N MUSIQUE
+
+MUSIQUE : idMusique, titre, duree, urlSpotify, idSpotify, tempo, dansability, energy, popularity
+
+dans_playlist, 1N PLAYLIST, 1N MUSIQUE
+etre_classee, 1N MUSIQUE, 1N CLASSEMENT
+
+CLIENT : idClient, nomClient, prenomClient, mdpClient, mailClient
+PLAYLIST : idPlaylist, nomPlaylist
+CLASSEMENT : idClassement, nomClassement
+
+avoir_playlist, 1N CLIENT, 1N PLAYLIST

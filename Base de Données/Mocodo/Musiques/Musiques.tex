@@ -1,0 +1,31 @@
+% Copy this before \begin{document}
+
+\usepackage[normalem]{ulem}
+\newenvironment{mld}
+  {\par\begin{minipage}{\linewidth}\begin{tabular}{rp{0.7\linewidth}}}
+  {\end{tabular}\end{minipage}\par}
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{\emph{#1}}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+% Copy that after \begin{document}
+
+\begin{mld}
+  Origine & (\foreign{\prim{idArtiste}}, \foreign{\prim{idLocalisation}})\\
+  A\_sortie & (\foreign{\prim{idArtiste}}, \foreign{\prim{idAlbum}})\\
+  Genre & (\prim{idGenres}, \attr{nomGenre})\\
+  Localisation & (\prim{idLocalisation}, \attr{pays})\\
+  Artiste & (\prim{idArtiste}, \attr{nomArtiste}, \attr{bio})\\
+  Album & (\prim{idAlbum}, \attr{nomAlbum}, \attr{coverAlbum}, \attr{idArtist}, \attr{date\_sortie})\\
+  Avoir\_genre & (\foreign{\prim{idGenres}}, \foreign{\prim{idMusique}})\\
+  Interprete & (\foreign{\prim{idArtiste}}, \foreign{\prim{idMusique}})\\
+  Dans\_album & (\foreign{\prim{idAlbum}}, \foreign{\prim{idMusique}})\\
+  Musique & (\prim{idMusique}, \attr{titre}, \attr{duree}, \attr{urlSpotify}, \attr{idSpotify}, \attr{tempo}, \attr{dansability}, \attr{energy}, \attr{popularity})\\
+  Dans\_playlist & (\foreign{\prim{idPlaylist}}, \foreign{\prim{idMusique}})\\
+  Etre\_classee & (\foreign{\prim{idMusique}}, \foreign{\prim{idClassement}})\\
+  Client & (\prim{idClient}, \attr{nomClient}, \attr{prenomClient}, \attr{mdpClient}, \attr{mailClient})\\
+  Playlist & (\prim{idPlaylist}, \attr{nomPlaylist})\\
+  Classement & (\prim{idClassement}, \attr{nomClassement})\\
+  Avoir\_playlist & (\foreign{\prim{idClient}}, \foreign{\prim{idPlaylist}})\\
+\end{mld}
