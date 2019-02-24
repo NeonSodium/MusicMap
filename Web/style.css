@@ -1,0 +1,52 @@
+body {
+    background-color: rgb(46, 46, 46);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1040px;
+    margin: auto;
+}
+
+.identification {
+    margin-top: 100px;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.menu li {
+    display: inline;
+}
+
+.footer {
+    background-color: rgb(102, 102, 102);
+}
+
+a {
+    color: rgb(91, 192, 222);
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+div {
+    /* border: 1px red solid; */
+}
