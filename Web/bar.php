@@ -8,7 +8,6 @@
 
         <div style="padding-left: 15px"><a href="">Découvrir</a></div>
 
-        <div style="padding-left: 15px"><a href="test.php">Test</a></div>
 
     </div>
 
@@ -28,4 +27,7 @@
         
     </div>
 
+
 </div>
+
+<hr>

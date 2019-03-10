@@ -12,22 +12,7 @@
 
 <body>
 
-    <?php include 'bar.php'; ?>
-
-    <?php
-
-    require_once 'vendor/autoload.php';
-
-    $session = new SpotifyWebAPI\Session(
-        'a61db8eaf8444f8a86ef751409a0e168',
-        '830549d14c44424598d9b2b8e9dd950e',
-        'http://localhost/callback.php'
-    );
-
-    header('Location: ' . $session->getAuthorizeUrl());
-    die();
-
-    ?>
+<?php include 'bar.php'; ?>
 
 </body>
 

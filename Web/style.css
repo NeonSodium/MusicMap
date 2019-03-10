@@ -19,10 +19,11 @@ body {
 }
 
 .identification {
-    margin-top: 100px;
+    margin-top: 30px;
     flex-direction: row;
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 h1 {
@@ -49,4 +50,18 @@ a {
 
 div {
     /* border: 1px red solid; */
+}
+
+.formulaire {
+    text-align: left;
+}
+
+.formulaire td {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+}
+
+input {
+    font-family: 'Roboto', sans-serif;
 }
