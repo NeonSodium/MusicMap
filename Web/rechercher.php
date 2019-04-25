@@ -12,8 +12,15 @@
 
 <body>
 
-<?php include 'bar2.php'; ?>
+<?php
+include 'bar2.php'; ?>
 
+<div style="max-width: 600px; margin: auto; margin-top: 50px;">
+    <form action="recherche.php" method="get">
+        <input name="r" type="text" placeholder="Rechercher" style="width: 80%"/>
+        <input type="submit" value="Go !"/>
+    </form>
+</div>
 
 </body>
 

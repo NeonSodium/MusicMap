@@ -11,124 +11,29 @@
 </head>
 
 <body>
-
-<?php include 'bar.php'; ?>
-
-<?php
-
-if (isset($_GET['type']) and $_GET['type'] == "inscription") {
-
-    ?>
-
-    <h2 style="text-align: center">Insciption</h2>
-
-
-    <div class="identification">
-        <form action="">
-            <table class="formulaire">
-                <tr>
-                    <td>
-                        Prénom
-                    </td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Nom
-                    </td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Mail
-                    </td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Mot de passe
-                    </td>
-                    <td>
-                        <input type="password" name="" id="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Confirmer le mdp
-                    </td>
-                    <td>
-                        <input type="password">
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
-
-    <div class="identification">
-        <form action="connexion.php" method="get">
-            <input type="hidden" name="type" value="connexion">
-            <p>Vous êtes déjà inscrit ? Cliquez ici : </p>
-            <button>Connexion</button>
-        </form>
-    </div>
-
-    <?php
-}
-else{
-?>
+<?php include 'bar2.php'; ?>
+<?php include 'bd.php'; ?>
 
 <div class="container">
 
-
-    <h2 style="text-align: center">Connexion</h2>
-
+    <p class="iden">Vous avez un compte ? Connectez vous :</p>
     <div class="identification">
-        <form action="">
-            <table class="formulaire">
+        <form method="POST" action="connecter.php" autocomplete="off">
+            <table style="border-spacing:20px">
                 <tr>
-                    <td>
-                        Mail
-                    </td>
-                    <td>
-                        <input type="text">
-                    </td>
+                    <td>Adresse mail :</td>
+                    <td><INPUT type="text" name="mail" value=""></td>
                 </tr>
                 <tr>
-                    <td>
-                        Mot de passe
-                    </td>
-                    <td>
-                        <input type="password">
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button type="submit">Connexion</button>
-                    </td>
+                    <td>Mot de passe :</td>
+                    <td><INPUT type="password" name="mdp1" value=""></td>
                 </tr>
             </table>
+            <p style="text-align:center"><INPUT type="submit" value="Connexion"></p>
         </form>
+
     </div>
-
-    <div class="identification">
-        <form action="connexion.php" method="get">
-            <input type="hidden" name="type" value="inscription">
-            <p>Vous n'êtes pas inscrit ? Cliquez ici : </p>
-            <button>Inscription</button>
-        </form>
-    </div>
-
-    <?php
-    }
-    ?>
-
+    <p style="text-align:center">Vous n'avez pas de compte ? <a href="inscription.php">Inscrivez vous !</a></p>
 </div>
 
 </body>
