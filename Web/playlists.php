@@ -11,17 +11,18 @@
 </head>
 
 <body>
-
+<div class="container">
 <?php include 'bar2.php'; ?>
 
 <?php if(isset($_SESSION['client'])){
-    echo 'Pl';
+    echo 'Blabla';
 }
 else{
     echo '<h1 style="padding: 50px">Veuillez vous connectez pour accéder à vos playlists.</h1>';
+    echo'<p style="text-align: center"><a href="connexion.php">Connectez-vous</a> ou <a href="inscription.php">inscrivez-vous</a> !</p>';
 }
 ?>
-
+</div>
 
 </body>
 

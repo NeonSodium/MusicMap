@@ -18,6 +18,7 @@ include 'bd.php';
 ?>
 
 <div class="container">
+
     <table class="leaderboard">
         <tr>
             <th>Classement</th>

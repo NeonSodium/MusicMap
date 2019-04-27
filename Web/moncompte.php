@@ -85,13 +85,7 @@ $rep->closeCursor();
     </tr>
 </table>
 
-    <p><a href="#" onclick="avatar()">Choisir son avatar</a></p>
-
     <p><a style="color: red;" href="#" onclick="effa()">Effacer son compte</a></p>
-
-
-    <div style="font-size: 10px;">Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-
 
 </div>
 

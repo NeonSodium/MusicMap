@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="../../style.css" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>MUSIC MAP</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+          integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="lecteur/css/audioPlayer.css">
+
 </head>
 
 <body>
@@ -15,7 +21,7 @@
 <?php
 session_start();
 include '../../bd.php';
-include '../../fonction_florian.php';
+include '../../fonction_php.php';
 $bdd = getBD();
 ?>
 
@@ -48,17 +54,19 @@ $bdd = getBD();
             <div>
                 <?php
                 echo "<h3>" . $musiques['nomartiste'] . " - " . $musiques['titre'] . "</h3>";
+                echo "<br> ID Musique : " . $musiques['idmusique'];
+                echo "<br> Lien preview : " . $musiques['preview'];
                 ?>
-                <audio controls style="width: 100%">
-                    <source src="<?php echo $musiques['preview']; ?>">
-                </audio>
 
             </div>
-
         </div>
 
         <?php
     }
+    ?>
+
+    <?php
+    include 'lecteur/lecteur.php'
     ?>
 
 </div>

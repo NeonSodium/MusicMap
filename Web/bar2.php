@@ -29,8 +29,8 @@
 
 <div class="topnav" id="myTopnav">
     <a href="index.php" class="active"><img src="assets/img/titre.png" alt=""></a>
-    <a href="">Mes playlists</a>
-    <a href="">Découvrir</a>
+    <a href="playlists.php">Ma playlist</a>
+    <a href="découvrir.php">Découvrir</a>
     <a href="leaderboard.php">Leaderboard</a>
     <a href="#" onclick="rechercher()">Rechercher</a>
     <?php if (isset($_SESSION['client'])) {

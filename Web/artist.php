@@ -8,12 +8,19 @@
     <link rel="stylesheet" href="style.css" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>MUSIC MAP</title>
+    <script type="text/javascript" src="fonctions.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js " > </script>
 </head>
+
+<script>
+
+</script>
 
 <body>
 <?php
 include 'bar2.php';
-include 'fonction_florian.php';
+include 'fonction_php.php';
 ?>
 <div class="container">
     <?php
@@ -32,6 +39,8 @@ include 'fonction_florian.php';
     # Si non existant dans la BD
     if (!$row) {
 
+        echo'<script>ajout()</script>';
+
         # Appel api Deezer pour les infos de l'artiste
         $info_d = info_artiste_deezer($_GET['idartist']);
 
@@ -39,7 +48,6 @@ include 'fonction_florian.php';
         $info_l = info_artiste_lasfm($info_d[0]);
 
 
-        echo 'Ajouté dans la BD ! <br><br>';
         echo '<h2>' . $info_d[0] . '</h2>';
 
         echo $info_l[0];

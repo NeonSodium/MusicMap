@@ -15,7 +15,7 @@
 <?php
 session_start();
 include '../../bd.php';
-include '../../fonction_florian.php';
+include '../../fonction_php.php';
 $bdd = getBD();
 ?>
 
@@ -35,6 +35,15 @@ $bdd = getBD();
             </tr>
         </table>
     </form>
+    <form action="random_music.php" method="get">
+        <p style="text-align: center">Code pays :</p>
+        <table style="width: 250px; margin: auto;">
+            <tr>
+                <td><input type="text" name="c" value="SE"></td>
+                <td><input type="submit" value="Let's go !"></td>
+            </tr>
+        </table>
+    </form>
 
     <hr>
 
@@ -44,6 +53,104 @@ $bdd = getBD();
             <?php
             if (isset($_GET['id'])) {
             $album = album_alea($bdd, $_GET['id']);
+            ?>
+
+            <h1><?php echo $album['nomalbum'] ?></h1>
+            <div style="max-width: 300px; margin: auto;">
+                <img src="<?php echo $album['coveralbum'] ?>" alt="" style="width: 100%">
+                <p style="text-align: center">ID : <?php echo $album['idalbum'] ?></p>
+            </div>
+        </div>
+
+        <div>
+            <?php
+            $musique = musique_alea($bdd, $album['idalbum']);
+            if ($musique) {
+                echo "<h2>" . $musique['titre'] . "</h2>";
+                echo "<a href=" . $musique['preview'] . ">lien de la musique</a>";
+                echo "<br> ISRC : " . $musique['isrc'];
+                ?>
+                <div>
+                    <audio controls style="width: 100%">
+                        <?php
+                        echo "<source src='" . $musique['preview'] . "' type='audio/mpeg'>"
+                        ?>
+                    </audio>
+                </div>
+                <?php
+            } else {
+                echo "La tracklist vient de s'ajouter";
+                ajout_tracklist($bdd, $album['tracklist'], $album['idalbum'], $album['idartiste']);
+                $musique = musique_alea($bdd, $album['idalbum']);
+                echo "<h2>" . $musique['titre'] . "</h2>";
+                echo "<a href=" . $musique['preview'] . ">lien de la musique</a>";
+                echo "<br> ISRC : " . $musique['isrc'];
+                ?>
+                <div>
+                    <audio controls style="width: 100%">
+                        <?php
+                        echo "<source src='" . $musique['preview'] . "' type='audio/mpeg'>"
+                        ?>
+                    </audio>
+                </div>
+                <?php
+            }
+            }
+            ?>
+
+            <?php
+            if (isset($_GET['id'])) {
+            $album = album_alea($bdd, $_GET['id']);
+            ?>
+
+            <h1><?php echo $album['nomalbum'] ?></h1>
+            <div style="max-width: 300px; margin: auto;">
+                <img src="<?php echo $album['coveralbum'] ?>" alt="" style="width: 100%">
+                <p style="text-align: center">ID : <?php echo $album['idalbum'] ?></p>
+            </div>
+        </div>
+
+        <div>
+            <?php
+            $musique = musique_alea($bdd, $album['idalbum']);
+            if ($musique) {
+                echo "<h2>" . $musique['titre'] . "</h2>";
+                echo "<a href=" . $musique['preview'] . ">lien de la musique</a>";
+                echo "<br> ISRC : " . $musique['isrc'];
+                ?>
+                <div>
+                    <audio controls style="width: 100%">
+                        <?php
+                        echo "<source src='" . $musique['preview'] . "' type='audio/mpeg'>"
+                        ?>
+                    </audio>
+                </div>
+                <?php
+            } else {
+                echo "La tracklist vient de s'ajouter";
+                ajout_tracklist($bdd, $album['tracklist'], $album['idalbum'], $album['idartiste']);
+                $musique = musique_alea($bdd, $album['idalbum']);
+                echo "<h2>" . $musique['titre'] . "</h2>";
+                echo "<a href=" . $musique['preview'] . ">lien de la musique</a>";
+                echo "<br> ISRC : " . $musique['isrc'];
+                ?>
+                <div>
+                    <audio controls style="width: 100%">
+                        <?php
+                        echo "<source src='" . $musique['preview'] . "' type='audio/mpeg'>"
+                        ?>
+                    </audio>
+                </div>
+                <?php
+            }
+            }
+            ?>
+
+            <?php
+            if (isset($_GET['c'])) {
+            $artiste = artiste_pays($bdd, $_GET['c']);
+            print_r($artiste);
+            $album = album_alea($bdd, $artiste['idartiste']);
             ?>
 
             <h1><?php echo $album['nomalbum'] ?></h1>

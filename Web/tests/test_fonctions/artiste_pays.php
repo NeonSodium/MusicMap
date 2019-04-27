@@ -15,7 +15,7 @@
 <?php
 session_start();
 include '../../bd.php';
-include '../../fonction_florian.php';
+include '../../fonction_php.php';
 $bdd = getBD();
 ?>
 

@@ -21,23 +21,15 @@ function effa() {
         }
     })
 }
-
-function avatar() {
+function ajout() {
     Swal.fire({
-        title: 'Choisir son avatar',
-        html:
-            '<a href="moncompte.php"><img style="margin: 10px" src="assets/img/Avatar/boy.png" height="60" width="60"></a>'
-            + '<a href="moncompte.php"><img style="margin: 10px" src="assets/img/Avatar/girl.png" height="60" width="60">'
-            + '<a href="moncompte.php"><img style="margin: 10px" src="assets/img/Avatar/boy-1.png" height="60" width="60">'
-            + '<a href="moncompte.php"><img style="margin: 10px" src="assets/img/Avatar/girl-1.png" height="60" width="60">'
-            + '<a href="moncompte.php"><img style="margin: 10px" src="assets/img/Avatar/man.png" height="60" width="60">'
-            + '<a href="moncompte.php"><img style="margin: 10px" src="assets/img/Avatar/man-1.png" height="60" width="60">'
-            + '<a href="moncompte.php"><img style="margin: 10px" src="assets/img/Avatar/man-2.png" height="60" width="60">'
-            + '<a href="moncompte.php"><img style="margin: 10px" src="assets/img/Avatar/man-3.png" height="60" width="60">'
-            + '<a href="moncompte.php"><img style="margin: 10px" src="assets/img/Avatar/man-4.png" height="60" width="60">',
-        confirmButtonText: 'Annuler',
-        confirmButtonColor: '#5bc0de',
-    });
+        position: 'top-end',
+        type: 'success',
+        title: 'Enregistrer dans la Base de Données !',
+        showConfirmButton: false,
+        timer: 1500
+    })
+
 }
 
 function rechercher() {

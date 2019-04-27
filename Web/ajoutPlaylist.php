@@ -8,23 +8,28 @@
     <link rel="stylesheet" href="style.css" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>MUSIC MAP</title>
-    <?php
-    echo "<meta http-equiv='refresh' content='0;url=index.php' />";
-    ?>
 </head>
+
+<?php
+include 'bd.php';
+$bdd = getBD();
+include 'fonction_php.php';
+?>
 
 <body>
 
-<?php include 'bar2.php'; ?>
-<?php include 'bd.php'; ?>
+<div class="container">
 
-<?php
-session_start();
-$bdd = getBD();
-$rep = $bdd->query("DELETE FROM CLIENT WHERE CLIENT.mailclient = '" . $_SESSION['client'][4] . "'");
-session_destroy();
-?>
+    <?php
+    echo "ID musique : " . $_GET['idmusique'] . "<br>";
+    echo "ID Client : " . $_GET['idclient'] . "<br>";
+    $ok = ajout_playlist($bdd, $_GET['idmusique'], $_GET['idclient']);
+    if ($ok){
+        echo "Ajoutée à votre playlist !";
+    }
+    ?>
 
+</div>
 
 </body>
 
