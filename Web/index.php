@@ -33,8 +33,8 @@ if (isset($_GET['c'])) {
 
         <div>
             <?php
-            if (isset($_GET['id'])) {
-            $album = album_alea($bdd, $_GET['id']);
+            if (isset($_GET['idartiste'])) {
+            $album = album_alea($bdd, $_GET['idartiste']);
             ?>
 
             <h3 style="text-align: center"><?php echo $album['nomalbum'] ?></h3>
@@ -55,6 +55,17 @@ if (isset($_GET['c'])) {
                         echo "<source src='" . $musique['preview'] . "' type='audio/mpeg'>"
                         ?>
                     </audio>
+                    <?php
+                    if (isset($_SESSION['client'])) {
+                        ?>
+                        <form action="ajoutPlaylist.php" style="text-align: center">
+                            <input type="hidden" value="<?php echo $musique['idmusique'] ?>" name="idmusique">
+                            <input type="hidden" value="<?php echo $_SESSION['client'][4] ?>" name="idclient">
+                            <input type="submit" value="Ajouter à ma playlist">
+                        </form>
+                        <?php
+                    }
+                    ?>
                 </div>
                 <?php
             } else {
@@ -63,11 +74,22 @@ if (isset($_GET['c'])) {
                 echo "<h2 style='text-align: center'>" . $musique['titre'] . "</h2>";
                 ?>
                 <div>
-                    <audio controls style="width: 100% ; margin: auto">
+                    <audio controls style="width: 100% ; margin: auto" autoplay="autoplay">
                         <?php
                         echo "<source src='" . $musique['preview'] . "' type='audio/mpeg'>"
                         ?>
                     </audio>
+                    <?php
+                    if (isset($_SESSION['client'])) {
+                        ?>
+                        <form action="ajoutPlaylist.php" style="text-align: center">
+                            <input type="hidden" value="<?php echo $musique['idmusique'] ?>" name="idmusique">
+                            <input type="hidden" value="<?php echo $_SESSION['client'][4] ?>" name="idclient">
+                            <input type="submit" value="Ajouter à ma playlist">
+                        </form>
+                        <?php
+                    }
+                    ?>
                     <p style="text-align: center">La tracklist vient de s'ajouter</p>
                 </div>
                 <?php
@@ -97,7 +119,7 @@ if (isset($_GET['c'])) {
                 echo "<h2 style='text-align: center'>" . $musique['titre'] . " - " . $artiste['nomartiste'] . "</h2>";
                 ?>
                 <div>
-                    <audio controls style="width: 100%">
+                    <audio controls style="width: 100%" autoplay="autoplay">
                         <?php
                         echo "<source src='" . $musique['preview'] . "' type='audio/mpeg'>"
                         ?>
@@ -118,14 +140,25 @@ if (isset($_GET['c'])) {
             } else {
                 ajout_tracklist($bdd, $album['tracklist'], $album['idalbum'], $album['idartiste']);
                 $musique = musique_alea($bdd, $album['idalbum']);
-                echo "<h2 style='text-align: center'>" . $musique['titre'] . "</h2>";
+                echo "<h2 style='text-align: center'>" . $musique['titre'] . " - " . $artiste['nomartiste'] . "</h2>";
                 ?>
                 <div>
-                    <audio controls style="width: 100%">
+                    <audio controls style="width: 100%" autoplay="autoplay">
                         <?php
                         echo "<source src='" . $musique['preview'] . "' type='audio/mpeg'>"
                         ?>
                     </audio>
+                    <?php
+                    if (isset($_SESSION['client'])) {
+                        ?>
+                        <form action="ajoutPlaylist.php" style="text-align: center">
+                            <input type="hidden" value="<?php echo $musique['idmusique'] ?>" name="idmusique">
+                            <input type="hidden" value="<?php echo $_SESSION['client'][4] ?>" name="idclient">
+                            <input type="submit" value="Ajouter à ma playlist">
+                        </form>
+                        <?php
+                    }
+                    ?>
                     <p style="text-align: center">La tracklist vient de s'ajouter</p>
                 </div>
                 <?php

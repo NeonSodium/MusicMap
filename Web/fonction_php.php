@@ -306,6 +306,63 @@ function artiste_pays($bdd, $pays)
     return $row;
 }
 
+function recup_playlist($bdd, $idclient)
+{
+    $playlist = array();
+    $req = $bdd->prepare("
+    SELECT * 
+    FROM PLAYLIST
+    WHERE PLAYLIST.idclient = :idclient
+    ORDER BY PLAYLIST.idplaylist
+    ");
+    $req->bindParam(':idclient', $idclient);
+    $req->execute();
+    while ($row = $req->fetch()) {
+        array_push($playlist, $row['idmusique']);
+    }
+    $req->closeCursor();
+    return $playlist;
+}
+
+function recup_musique($bdd, $idmusique)
+{
+    $req = $bdd->prepare("
+    SELECT * 
+    FROM MUSIQUE
+    WHERE MUSIQUE.idmusique = :idmusique
+    ");
+    $req->bindParam(':idmusique', $idmusique);
+    $req->execute();
+    $row = $req->fetch(PDO::FETCH_ASSOC);
+    $req->closeCursor();
+    return $row;
+}
+
+function info_musique($bdd, $idmusique)
+{
+    $req = $bdd->prepare("
+    SELECT ARTISTE.nomartiste, MUSIQUE.titre, ALBUM.nomalbum, ALBUM.coveralbum, ARTISTE.idartiste, MUSIQUE.preview
+    FROM ARTISTE, MUSIQUE, ALBUM
+    WHERE MUSIQUE.idmusique = :idmusique
+    AND MUSIQUE.idartiste = ARTISTE.idartiste
+    AND MUSIQUE.idalbum = ALBUM.idalbum
+    ");
+    $req->bindParam(':idmusique', $idmusique);
+    $req->execute();
+    $row = $req->fetch(PDO::FETCH_ASSOC);
+    $req->closeCursor();
+    return $row;
+}
+
+function supp_playlist($bdd, $idmusique, $idclient)
+{
+    $req = $bdd->prepare("DELETE FROM PLAYLIST WHERE PLAYLIST.idclient = :idclient AND PLAYLIST.idmusique = :idmusique");
+    $req->bindParam(':idmusique', $idmusique);
+    $req->bindParam(':idclient', $idclient);
+    $req->execute();
+    $req->closeCursor();
+}
+
 ?>
 
 

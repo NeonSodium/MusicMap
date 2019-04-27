@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>MUSIC MAP</title>
+    <meta http-equiv="refresh" content="1;URL=index.php">
 </head>
 
 <?php
@@ -18,13 +19,11 @@ include 'fonction_php.php';
 
 <body>
 
-<div class="container">
+<div class="container" style="text-align: center">
 
     <?php
-    echo "ID musique : " . $_GET['idmusique'] . "<br>";
-    echo "ID Client : " . $_GET['idclient'] . "<br>";
     $ok = ajout_playlist($bdd, $_GET['idmusique'], $_GET['idclient']);
-    if ($ok){
+    if ($ok) {
         echo "Ajoutée à votre playlist !";
     }
     ?>
