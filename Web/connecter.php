@@ -22,14 +22,15 @@
 $bdd = getBD();
 $rep = $bdd->query("SELECT * FROM CLIENT WHERE mailclient = '" . $_POST['mail'] . "' AND mdpclient = '" . $_POST['mdp1'] . "'");
 $repco = $rep->fetch();
-if($repco == ""){
-    echo "<meta http-equiv='refresh' content='2;url=connexion.php' />";}
-else{
+if ($repco == "") {
+    echo "<meta http-equiv='refresh' content='2;url=connexion.php' />";
+} else {
     $_SESSION['client'] = array($repco['nomclient'], $repco['prenomclient'], $repco['pseudo'], $repco['mdpclient'], $repco['mailclient'], $repco['nb_contrib']);
     echo "<meta http-equiv='refresh' content='2;url=index.php' /><div>
-<h1 style=\"padding: 50px\">Heureux de vous revoir ".$_SESSION['client'][2]." !</h1>
+<h1 style=\"padding: 50px\">Heureux de vous revoir " . $_SESSION['client'][2] . " !</h1>
 <div class='gif'><img src='assets/img/gif/content.gif'></div>
-</div>";}
+</div>";
+}
 $rep->closeCursor();
 ?>
 

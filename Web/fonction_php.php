@@ -262,17 +262,17 @@ function musique_pays($bdd, $pays)
 function musique_découvrir($bdd, $rank)
 {
     if ($rank == '0') {
-        $req = $bdd->prepare("SELECT * FROM MUSIQUE, ARTISTE WHERE rank_ > 900000 ORDER BY RAND() LIMIT 1");
+        $req = $bdd->prepare("SELECT * FROM MUSIQUE, ARTISTE WHERE rank_ > 900000 AND MUSIQUE.idartiste = ARTISTE.idartiste ORDER BY RAND() LIMIT 1");
         $req->execute();
         $row = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
     } elseif ($rank == '1') {
-        $req = $bdd->prepare("SELECT * FROM MUSIQUE, ARTISTE WHERE rank_ < 1000 ORDER BY RAND() LIMIT 1");
+        $req = $bdd->prepare("SELECT * FROM MUSIQUE, ARTISTE WHERE rank_ < 1000 AND MUSIQUE.idartiste = ARTISTE.idartiste ORDER BY RAND() LIMIT 1");
         $req->execute();
         $row = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
-    } else {
-        $req = $bdd->prepare("SELECT * FROM MUSIQUE, ARTISTE ORDER BY RAND() LIMIT 1");
+    } elseif ($rank =='3') {
+        $req = $bdd->prepare("SELECT * FROM MUSIQUE, ARTISTE where MUSIQUE.idartiste = ARTISTE.idartiste ORDER BY RAND() LIMIT 1");
         $req->execute();
         $row = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
