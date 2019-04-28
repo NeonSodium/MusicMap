@@ -363,6 +363,37 @@ function supp_playlist($bdd, $idmusique, $idclient)
     $req->closeCursor();
 }
 
+function nom_pays_artiste($bdd, $idartiste)
+{
+    $req = $bdd->prepare("
+    SELECT ARTISTE.pays, PAYS.nom 
+    FROM ARTISTE, PAYS
+    WHERE ARTISTE.idartiste = :idartiste
+    AND ARTISTE.pays = PAYS.code
+    ");
+    $req->bindParam(':idartiste', $idartiste);
+    $req->execute();
+    $row = $req->fetch(PDO::FETCH_ASSOC);
+    $req->closeCursor();
+    return $row;
+}
+
+function discographie($bdd, $idartiste)
+{
+    $nom = array();
+    $cover = array();
+    $req = $bdd->prepare("SELECT * FROM ALBUM WHERE ALBUM.idartiste = :idartiste");
+    $req->bindParam(':idartiste', $idartiste);
+    $req->execute();
+    while ($row = $req->fetch()) {
+        array_push($nom, $row['nomalbum']);
+        array_push($cover, $row['coveralbum']);
+    }
+    $req->closeCursor();
+    $albums = array($nom, $cover);
+    return $albums;
+}
+
 ?>
 
 

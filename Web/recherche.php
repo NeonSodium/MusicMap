@@ -52,7 +52,6 @@ include 'fonction_php.php';
 
             <?php
         }
-        $req->closeCursor();
     }
     ?>
 </div>

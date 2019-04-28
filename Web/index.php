@@ -116,7 +116,9 @@ if (isset($_GET['c'])) {
             <?php
             $musique = musique_alea($bdd, $album['idalbum']);
             if ($musique) {
+                echo "<a href='artist.php?idartist=".$musique['idartiste']."'>";
                 echo "<h2 style='text-align: center'>" . $musique['titre'] . " - " . $artiste['nomartiste'] . "</h2>";
+                echo "</a>";
                 ?>
                 <div>
                     <audio controls style="width: 100%" autoplay="autoplay">
@@ -140,7 +142,9 @@ if (isset($_GET['c'])) {
             } else {
                 ajout_tracklist($bdd, $album['tracklist'], $album['idalbum'], $album['idartiste']);
                 $musique = musique_alea($bdd, $album['idalbum']);
+                echo "<a href='artist.php?idartist=".$musique['idartiste']."'>";
                 echo "<h2 style='text-align: center'>" . $musique['titre'] . " - " . $artiste['nomartiste'] . "</h2>";
+                echo "</a>";
                 ?>
                 <div>
                     <audio controls style="width: 100%" autoplay="autoplay">

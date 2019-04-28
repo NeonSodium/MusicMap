@@ -216,3 +216,24 @@ p {
 .lecteurPlaylist {
     text-align: center;
 }
+
+.artiste {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+}
+
+.discographie {
+    text-align: center;
+    margin: auto;
+}
+
+.discographie td, th {
+    padding: 15px;
+    border: #292929 1px solid;
+}
+
+.discographie img {
+    max-width: 100px;
+}

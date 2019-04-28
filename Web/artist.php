@@ -10,7 +10,7 @@
     <title>MUSIC MAP</title>
     <script type="text/javascript" src="fonctions.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js " > </script>
+    <script src=" https://unpkg.com/sweetalert/dist/sweetalert.min.js "></script>
 </head>
 
 <script>
@@ -39,7 +39,7 @@ include 'fonction_php.php';
     # Si non existant dans la BD
     if (!$row) {
 
-        echo'<script>ajout()</script>';
+        echo '<script>ajout()</script>';
 
         # Appel api Deezer pour les infos de l'artiste
         $info_d = info_artiste_deezer($_GET['idartist']);
@@ -47,54 +47,39 @@ include 'fonction_php.php';
         # Appel api LastFm pour obtenir les artistes similaires et la bio
         $info_l = info_artiste_lasfm($info_d[0]);
 
+        // Nom artiste :
+        /*echo '<h2>' . $info_d[0] . '</h2>';
+        echo "<img src='" . $info_d[1] . "' />";
+        echo "<p>" . $info_l[0] . "</p>";*/
 
-        echo '<h2>' . $info_d[0] . '</h2>';
-
-        echo $info_l[0];
-
-        echo '<h3>Similaire : </h3>';
-        $nbSim = count($info_l[1]);
-        for ($i = 0; $i < $nbSim; $i++) {
-            echo $info_l[1][$i]->{'name'} . '<br>';
-
-            # récup info deezer pour les similaires avec le nom A FAIRE
-//            $sim = recherche_api_deezer($info_l[1][$i]->{'name'}, 1);
-//            $id_sim = $sim[0][0];
-//            $nom_sim = $sim[1][0];
-//            $img_sim = $sim[2][0];
-//            #print_r($sim);
+//        echo '<h3>Similaire : </h3>';
+//        $nbSim = count($info_l[1]);
+//        for ($i = 0; $i < $nbSim; $i++) {
+//            echo $info_l[1][$i]->{'name'} . '<br>';
 //
-//            $lFM_sim = info_artiste_lasfm($nom_sim);
-
-            # Risque de dépasser les limites de l'API
-
-            # Permet l'ajout des artistes similaires dans la BD mais ça fait exploser les requetes api
-            #ajout_artiste($bdd, $id_sim, $nom_sim, $lFM_sim[0], $img_sim);
-
-
-            # Permet de preciser les artistes similaires dans la BD
-            try {
-                $req = $bdd->prepare("INSERT INTO SIMILAIRE (idArtiste1, idArtiste2) VALUES(:id1, :id2)");
-                $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $req->bindParam(':id1', $_GET['idartist']);
-                $req->bindParam(':id2', $id_sim);
-                $req->execute();
-                $req->closeCursor();
-            } catch (PDOException $e) {
-                echo 'Exception reçue : ', $e->getMessage(), "\n";
-                echo '<br>';
-            }
-        }
+//            # récup info deezer pour les similaires avec le nom A FAIRE
+////            $sim = recherche_api_deezer($info_l[1][$i]->{'name'}, 1);
+////            $id_sim = $sim[0][0];
+////            $nom_sim = $sim[1][0];
+////            $img_sim = $sim[2][0];
+////            #print_r($sim);
+////
+////            $lFM_sim = info_artiste_lasfm($nom_sim);
+//
+//            # Risque de dépasser les limites de l'API
+//
+//            # Permet l'ajout des artistes similaires dans la BD mais ça fait exploser les requetes api
+//            #ajout_artiste($bdd, $id_sim, $nom_sim, $lFM_sim[0], $img_sim);
+//        }
 
         $nomArt = str_sansaccent($info_d[0]);
-        echo $nomArt;
         $albums = recherche_album($_GET['idartist'], $nomArt);
 
 
-        echo '<h3>Albums : </h3>';
-        for ($i = 0; $i < count($albums[0]); $i++) {
+        //echo '<h3>Discographie : </h3>';
+        /*for ($i = 0; $i < count($albums[0]); $i++) {
             echo $albums[1][$i] . "<br>";
-        }
+        }*/
         #var_dump($albums);
 
         # Ajout a la BD
@@ -127,16 +112,49 @@ include 'fonction_php.php';
             }
         }
 
+        echo "<meta http-equiv='refresh' content='1;URL=artist.php?idartist=" . $_GET['idartist'] . "'>";
 
         # Si présent dans la BD
     } else {
         echo '<h2>' . $row['nomartiste'] . '</h2>';
-        echo "<img src='" . $row['imgartiste'] . "' alt=''>";
-        echo "<h3>Bio : </h3>";
-        echo "<p>" . $row['bio'] . "</p>";
-    }
+        ?>
+        <div class="artiste">
+            <div>
+                <?php
+                echo "<img src='" . $row['imgartiste'] . "' alt=''>";
+                ?>
+            </div>
 
+            <div>
+                <?php
+                echo "<h3>Biographie : </h3>";
+                echo "<p>" . $row['bio'] . "</p>";
+                $pays = nom_pays_artiste($bdd, $row['idartiste']);
+                echo "<h3>Pays : " . $pays['nom'] . "</h3>";
+                ?>
+            </div>
+        </div>
+        <hr>
+        <h3 style="text-align: center">Discographie :</h3>
+        <table class="discographie">
+            <?php
+            $albums = discographie($bdd, $row['idartiste']);
+            for ($i = 0; $i < count($albums[0]); $i++) {
+                echo "<tr>";
+                echo "<td>";
+                echo "<img src='" . $albums[1][$i] . "' />";
+                echo "</td>";
+                echo "<td>";
+                echo $albums[0][$i];
+                echo "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </table>
+        <?php
+    }
     ?>
+
 </div>
 
 </body>
